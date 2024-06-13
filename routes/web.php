@@ -7,9 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('main');
 
-Route::get('/proyectos-view', function () {
-    return view('proyectos');
-})->name('proyectos-view');
+Route::get('/proyectos-view', [App\Http\Controllers\ProyectoViewController::class, 'index'])->name('proyectos-view');
 
 Route::get('/perfil', function () {
     return view('perfil');
@@ -20,6 +18,7 @@ Route::get('/contacto', function () {
 })->name('contacto');
 
 Auth::routes();
+
 
 Route::resource('proyectos', App\Http\Controllers\ProyectoController::class);
 
