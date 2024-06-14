@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet"
@@ -33,7 +33,6 @@
                 <p>X (Twitter)</p>
             </div>
             <a class="boton" href="https://twitter.com/carlost__tovar/" target="_blank">@carlost__tovar</a>
-
         </div>
         <div class="tarjeta">
             <div class="medio-contacto">
@@ -45,15 +44,15 @@
         <div class="tarjeta">
             <div class="medio-contacto">
                 <iconify-icon icon="bi:telegram"></iconify-icon>
-                <p>Telegram</p </div>
+                <p>Telegram</p>
             </div>
             <a class="boton" href="https://t.me/carlost_tovar" target="_blank">@carlost_tovar</a>
         </div>
-    </div>
-</section>
+    </section>
     <section id="contacto">
         <h4>O envíame un correo electrónico:</h4>
-        <form id="formulario-contacto" class="form">
+        <form id="formulario-contacto" class="form" action="{{ route('enviar.correo') }}" method="POST">
+            @csrf
             <div class="datos-form">
                 <div class="nombre">
                     <label for="nombre">Nombre</label>
@@ -71,17 +70,45 @@
             <button type="submit" class="boton">Enviar mensaje</button>
         </form>
     </section>
-    <div id="spinner-container">
+    <div id="spinner-container" style="display:none;">
         <div id="spinner"></div>
     </div>
-    <div id="respuesta-modal">
+    <div id="respuesta-modal" style="display:none;">
         <iconify-icon icon="material-symbols:close" id="cerrar-modal"></iconify-icon>
-        <p id="respuesta">Mensaje Enviado</p>
+        <p id="respuesta"></p>
     </div>
     <footer>
         @include('partials.footer')
     </footer>
-    <script src="contacto.js"></script>
+
+    <script>
+        document.getElementById('formulario-contacto').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evitar el envío tradicional del formulario
+
+            // Mostrar el spinner mientras se procesa la solicitud
+            document.getElementById('spinner-container').style.display = 'block';
+            document.body.classList.add("body-back");
+
+            // Obtener los datos del formulario
+            let formData = new FormData(this);
+
+            // Enviar la solicitud usando Fetch API
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Ocultar el spinner
+                document.getElementById('spinner-container').style.display = 'none';
+                document.getElementById('formulario-contacto').reset();
+                document.body.classList.remove("body-back");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 
 </html>
