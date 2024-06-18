@@ -10,9 +10,8 @@ Route::get('/', function () {
 
 Route::get('/proyectos-view',[App\Http\Controllers\ProyectoViewController::class, 'index'])->name('proyectos-view');
 
-Route::get('/perfil', function () {
-    return view('perfil');
-})->name('perfil');
+Route::get('/perfil',[App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
+
 
 Route::get('/contacto', function () {
     return view('contacto');
@@ -26,5 +25,7 @@ Auth::routes();
 
 
 Route::resource('proyectos', App\Http\Controllers\ProyectoController::class);
+
+Route::resource('experiencias', App\Http\Controllers\ExperienciaController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

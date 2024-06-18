@@ -73,83 +73,17 @@
     </section>
     <section id="experiencia" class="experiencia">
         <ol class="lista-experiencia">
+            @foreach ($experiencias as $experiencia)
             <li>
                 <div class="triangle-list"></div>
-                <div class="date">mar. 2023 - Actualidad</div>
-                <h3>Desarrollador y Administrador de Sistemas</h3>
-                <h4>Estrategia Ases - Universidad del Valle</h4>
+                <div class="date">{{ date('M Y', strtotime($experiencia->fecha_inicio)) }} - {{ $experiencia->fecha_fin ? date('M Y', strtotime($experiencia->fecha_fin)) : 'Actualidad' }}</div>
+                <h3>{{ $experiencia->puesto }}</h3>
+                <h4>{{ $experiencia->empresa }}</h4>
                 <p>
-                    Actualmente, como monitor en la Universidad del Valle, me ocupo del desarrollo y mantenimiento del
-                    Sistema de Información ASES que usa las tecnologías de Python, Django, Javascript y React. Además,
-                    administro el servidor utilizando Oracle Linux 8 y Apache, y lidero la gestión de bases de datos.
-                    Recientemente, participé en la migración e implementación
-                    exitosa del Sistema de Información desde un antiguo módulo del campus virtual. Este rol ha
-                    fortalecido mis habilidades en gestión de proyectos, liderazgo y trabajo en equipo.
+                    {{ $experiencia->descripcion }}
                 </p>
             </li>
-            <li>
-                <div class="triangle-list"></div>
-                <div class="date">nov. 2021 - ago. 2022</div>
-                <h3>Desarrollador Fullstack</h3>
-                <h4>Estrategia Ases - Universidad del Valle</h4>
-                <p>
-                    Formé parte del equipo de desarrollo y mantenimiento del módulo de la estrategia de acompañamiento
-                    estudiantil ASES, que se ejecutaba en el campus virtual de la Universidad del Valle a través de
-                    Moodle. En este rol de monitoría, colaboré en la solución de incidencias y en la implementación de
-                    nuevas funcionalidades utilizando PHP, JavaScript, HTML y CSS. Además, trabajé en la administración
-                    y mantenimiento de bases de datos con PostgreSQL. Este puesto me permitió desarrollar mis
-                    habilidades en la resolución de problemas, trabajo en equipo y en la programación en los lenguajes
-                    mencionados.
-                </p>
-            </li>
-            <li>
-                <div class="triangle-list"></div>
-                <div class="date">ene. 2021 - jun 2021</div>
-                <h3>Tutor de Algoritmia y Programación</h3>
-                <h4>EISC - Universidad del Valle</h4>
-                <p>
-                    Trabajé como monitor en el curso de Algoritmia y Programación de la Escuela de Ingeniería de
-                    Sistemas y Computación, donde brindé asesoramiento en Python a estudiantes universitarios de
-                    diferentes ingenierías. En este rol, ayudé a los estudiantes a comprender los conceptos
-                    fundamentales de la programación y la resolución de problemas, y proporcioné apoyo en la
-                    implementación de soluciones utilizando Python. Esta experiencia me permitió desarrollar habilidades
-                    en la enseñanza y la comunicación efectiva, así como en la programación en Python.
-                </p>
-            </li>
-            <li>
-                <div class="triangle-list"></div>
-                <div class="date">jul. 2020 - dic. 2020</div>
-                <h3>Monitor Socieducativo</h3>
-                <h4>Estrategia ASES - Universidad del Valle</h4>
-                <p>
-                    Desempeñé el rol de Monitor Socioeducativo, brindando acompañamiento académico y personal a
-                    estudiantes de primeros semestres de Ingeniería de Sistemas. En este rol, ayudé a los estudiantes a
-                    desarrollar habilidades efectivas de estudio y aprendizaje, fomenté la resolución de problemas y les
-                    brindé asesoramiento en asuntos académicos y personales. Además, llevé a cabo un seguimiento semanal
-                    de los estudiantes, brindándoles asesoramiento y retroalimentación en su proceso de adaptación
-                    universitaria. También informaba a practicantes y profesionales sobre el progreso y las necesidades
-                    de los estudiantes. Esta experiencia me permitió desarrollar habilidades en la gestión de relaciones
-                    interpersonales, gestión del tiempo, la enseñanza y el liderazgo.
-                </p>
-            </li>
-            <li>
-                <div class="triangle-list"></div>
-                <div class="date">sep. 2019 - may. 2020</div>
-                <h3>Monitor de Sala de Cómputo</h3>
-                <h4>EISC - Universidad del Valle</h4>
-                <p>
-                    Vigilé y controlé el uso de los equipos de la sala de cómputo de la Escuela de Ingeniería de
-                    Sistemas y Computación. También di tutorías a estudiantes de distintas ingenierías que tenían clases
-                    de Tecnología Informática y Algoritmia y Programación en mi sala de cómputo asignada. Eventualmente,
-                    también solucioné problemas técnicos menores con los equipos de la sala.
-                </p>
-            </li>
-            <li>
-                <div class="triangle-list"></div>
-                <div class="date">ago. 2015 - oct.2016</div>
-                <h3>Practicante de mercadeo y soporte</h3>
-                <h4>Compuservix LTDA</h4>
-            </li>
+            @endforeach
         </ol>
     </section>
     <footer>
